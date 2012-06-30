@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+	<%= stylesheet_link_tag    "application" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+
+<body>
+<!--- NAVIGATION BAR -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<ul class="nav">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+				</ul>
+					<% if current_user %>
+				<ul class="nav pull-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<%= current_user.username %><b class="caret"></b></a>
+						<ul class=" nav-stacked dropdown-menu">
+							<li><%= "You wrote " + pluralize(current_user.posts.size, 'post') %></li>
+							<hr/>
+							<li><%= link_to "Post panel", posts_path %></li>
+							<li><%= link_to "New post", new_post_path %></li>
+							<hr/>
+							<li><%= link_to "Settings", :controller => "users", :action => "edit", :id => current_user.id %></li>
+							<li><%= link_to "Log out", log_out_path %></li>
+					<% else %>
+						</ul>
+				</ul>
+					<% end %>
+			</div>
+		</div>
+	</div>
+	<!--- Big Welcom -->
+	
+	<div class="welcome">
+	 <% if current_user.nil? %>
+			<div class="user" >Have an Account? <i class="icon-lock"></i><%= link_to "log in", log_in_path %></div>
+			<div class="user" ><%= link_to "Sign up", sign_up_path %></div>
+	<% end %>
+	 	<a href="/"><h1>Wit,</h1><br/>
+		<h3>intelligence + humor</h3></a>
+	</div>
+	<hr/>
+<!--- Content -->
+	<div class="container">
+		<% if !flash[:notice].blank? %>
+			<div class="row">
+				<div class="notice">
+					<div class="span4 offset3">
+						<div class="alert alert-success">
+							<%= flash[:notice] %>					
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+
+		<%= yield %>
+
+	</div>
+	<div class="footer">
+	</div>
+</body>
+</html>

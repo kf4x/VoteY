@@ -1,0 +1,19 @@
+<%= form_for @post do |f| -%>
+<% if @post.errors.any? %>
+	<div class="alert alert-error">
+		<h2>Oh shoot! There's <%= pluralize(@post.errors.size, "error") %></h2>
+		<% @post.errors.full_messages.each do |m| %>
+		<ul>
+			<li><%= m %></li>
+		</ul>
+		<% end %>
+	</div>
+<% end %>
+<div class="row">
+	<div class="span4 offset3">
+	<%= f.text_field :title %>
+	<%= f.text_area :content, :size => "5x4" %>
+<div class="row"><div class="span4"><%= f.submit "Update" %></div></div>
+<% end -%>
+</div>
+</div>

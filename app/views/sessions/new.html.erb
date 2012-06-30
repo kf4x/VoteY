@@ -1,0 +1,11 @@
+<%= form_tag sessions_path do %>
+
+	<table class="form-inline" border="0" cellspacing="5" cellpadding="5">
+		<tr><td><%= text_field_tag :username, params[:username], :placeholder => 'Username' %></td></tr>
+		<tr><td><%= password_field_tag :password, params[:password], placeholder: 'Password' %></td></tr>
+		<tr><td><%= check_box_tag :remember_me, 1, params[:remember_me], :class => "checkbox" %> Remember me?</td></tr>
+		<tr><td><%= submit_tag "Log in" %>	<%= link_to "Forgot Password?", new_password_reset_path %></td></tr>		
+	</table>
+
+<% end %>
+

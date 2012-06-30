@@ -1,0 +1,9 @@
+<h1><%= @user.username %></h1>
+
+<%= @user.username %> has <%= pluralize(@user.posts.count, 'post') %><br/>
+
+<% @user.posts.each do |post| %>
+<ul>
+	<li><%= link_to post.title, post  %></li>
+</ul>
+<%end %>

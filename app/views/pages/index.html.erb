@@ -1,0 +1,26 @@
+<% @posts.each	do |post| %>
+	<div class="row">
+		<div class="span4">
+			<h1><span class='votes_count' id='votes_count<%= post.id %>'><%= pluralize(post.votes_for, 'point') %></span></h1><br/>
+			<span class='vote_buttons' id='vote_buttons<%= post.id %>'>
+			<% if current_user.nil? %>
+				<a href='log_in' class='vote_up' id='<%= post.id %>'><i class="icon-arrow-up"></i>Nice!</a>
+				<a href='log_in' class='vote_down' id='<%= post.id %>'><i class="icon-arrow-down"></i>Nah.</a>
+			<% else %>
+				<a href='javascript:;' class='vote_up' id='<%= post.id %>'><i class="icon-arrow-up"></i>Nice!</a>
+				<a href='javascript:;' class='vote_down' id='<%= post.id %>'><i class="icon-arrow-down"></i>Nah.</a>
+			<% end %>
+		</div>
+		
+		<div class="span4"><h1><%= link_to post.title, post %>
+			<% if post.image_url.nil? %>
+			<% else %>
+				<span class="label label-important">IMG</span>
+			<% end %>
+			</h1>
+		</div>
+		<div class="span4">
+			<p><%= post.content %></p>
+		</div>
+	</div><br/><hr/>
+<% end %>

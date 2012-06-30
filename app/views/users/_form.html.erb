@@ -1,0 +1,19 @@
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+	<div class="alert alert-error">
+		<h2>Oh shoot! There's <%= pluralize(@user.errors.size, "error") %></h2>
+			<% @user.errors.full_messages.each do |m| %>
+			<ul>
+				<li><%= m %></li>
+			</ul>
+			<% end %>
+		</div>
+	<% end %>
+		<table class="form-inline" border="0" cellspacing="5" cellpadding="5">
+			<tr><td><%= f.text_field :username, :placeholder => 'Username' %></td></tr>
+			<tr><td><%= f.text_field :email, :placeholder => 'Email' %></td></tr>
+			<tr><td><%= f.password_field :password, :placeholder => 'Password' %></td></tr>
+			<tr><td><%= f.password_field :password_confirmation, :placeholder => 'Re-type Password'%></td></tr>
+			<tr><td><%= f.submit %></td></tr>		
+		</table>
+<% end %>

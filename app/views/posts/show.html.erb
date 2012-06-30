@@ -1,0 +1,23 @@
+<h1><%= @post.title %></h1>
+<%= @post.content %><br/>
+<% if @post.image_url.nil? %>
+<% else %>
+	<%= image_tag @post.image.url.to_s %>
+<% end %>
+<br/>
+
+	<span class='votes_count' id='votes_count<%= @post.id %>'><%= pluralize(@post.votes_for, 'point') %></span>
+	<span class='vote_buttons' id='vote_buttons<%= @post.id %>'>
+	<% if current_user.nil? %>
+		<a href='log_in' <i class="icon-arrow-up"></i>Nice!</a>
+		<a href='log_in' <i class="icon-arrow-down"></i>Nah.</a>
+	<% else %>
+		<a href='javascript:;' class='vote_up' id='<%= @post.id %>'><i class="icon-arrow-up"></i>Nice!</a>
+		<a href='javascript:;' class='vote_down' id='<%= @post.id %>'><i class="icon-arrow-down"></i>Nah.</a>
+	<% end %>
+	</span>
+
+<br/>
+Created on: <%= @post.created_at.to_s :datehelper %>
+<br/>
+<p><%= link_to "This User", user_path(@post.user_id) %> is funny.</p>

@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="span6 offset3">
+		<table class="table">
+			<% @user.each	do |user| %>
+			<tr>
+				<td><%= link_to user.username, user %></td>
+			</tr>
+			<% end %>
+			<tr>
+			</tr>
+		</table>
+	</div>
+</div>
